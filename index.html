@@ -166,11 +166,10 @@ Thank You ❤️
 
 <script src="script.js"></script>
 <!-- Background Music -->
-<audio controls loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+<audio id="bgMusic" loop>
+    <source src="farewell-song.mp3" type="audio/mpeg">
 </audio>
-<!-- Mute Button -->
+    <!-- Mute Button -->
 <button id="musicBtn">🔊</button>
 
 <style>
@@ -201,22 +200,20 @@ const btn = document.getElementById("musicBtn");
 
 music.volume = 0.4;
 
-function playMusic() {
-    music.play().catch(() => {});
-}
+// Play music on the first click anywhere
+document.addEventListener("click", function () {
+    music.play().catch(err => console.log(err));
+}, { once: true });
 
-window.addEventListener("load", playMusic);
-
-document.addEventListener("click", playMusic, { once: true });
-
-btn.addEventListener("click", function(e){
+// Mute / Unmute button
+btn.addEventListener("click", function (e) {
     e.stopPropagation();
 
-    if(music.paused){
-        music.play();
+    if (music.muted) {
+        music.muted = false;
         btn.textContent = "🔊";
-    }else{
-        music.pause();
+    } else {
+        music.muted = true;
         btn.textContent = "🔇";
     }
 });
