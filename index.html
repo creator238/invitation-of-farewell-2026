@@ -165,6 +165,62 @@ Thank You ❤️
 </section>
 
 <script src="script.js"></script>
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+    <source src="farewell-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
+<!-- Mute Button -->
+<button id="musicBtn">🔊</button>
+
+<style>
+#musicBtn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 9999;
+    transition: 0.3s;
+}
+
+#musicBtn:hover{
+    background: rgba(0,0,0,0.85);
+}
+</style>
+
+<script>
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+music.volume = 0.4;
+
+function playMusic() {
+    music.play().catch(() => {});
+}
+
+window.addEventListener("load", playMusic);
+
+document.addEventListener("click", playMusic, { once: true });
+
+btn.addEventListener("click", function(e){
+    e.stopPropagation();
+
+    if(music.paused){
+        music.play();
+        btn.textContent = "🔊";
+    }else{
+        music.pause();
+        btn.textContent = "🔇";
+    }
+});
+</script>
 </body>
 </html>
