@@ -34,66 +34,79 @@ starBox.appendChild(star);
 }
 
 /* ---------- INTRO ---------- */
+/* ---------- TAP THE SKY ---------- */
 
-setTimeout(()=>{
+const tapSky = document.getElementById("tapSky");
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
 
-intro.querySelector("h1").innerHTML="Look Up";
+music.volume = 0.4;
 
-},1000);
+tapSky.addEventListener("click", () => {
 
-setTimeout(()=>{
+    // Start music
+    music.play().catch(() => {});
 
-intro.querySelector("p").innerHTML="Every star tells a story...";
+    // Show "Look Up"
+    tapSky.innerHTML = "✨ Look Up ✨";
 
-},3000);
+    setTimeout(() => {
+        intro.querySelector("p").innerHTML = "Every star tells a story...";
+    }, 1000);
 
-setTimeout(()=>{
+    setTimeout(() => {
+        lines.forEach(line => {
+            line.style.animationPlayState = "running";
+        });
 
-lines.forEach(line=>{
+        stars.forEach(star => {
+            star.style.animationPlayState = "running";
+        });
+    }, 2000);
 
-line.style.animationPlayState="running";
+    setTimeout(() => {
+        tapSky.innerHTML = "FAREWELL 2026";
+        intro.querySelector("p").innerHTML = "A journey written among the stars.";
+    }, 4500);
+
+    setTimeout(() => {
+        intro.style.opacity = "0";
+
+        setTimeout(() => {
+            intro.style.display = "none";
+            invite.style.display = "flex";
+            invite.style.opacity = "0";
+
+            setTimeout(() => {
+                invite.style.opacity = "1";
+                invite.style.transition = "1s";
+            }, 100);
+
+        }, 1000);
+
+    }, 6500);
+
+}, { once: true });
+
+/* ---------- MUTE BUTTON ---------- */
+
+btn.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+    if(music.muted){
+
+        music.muted = false;
+        btn.textContent = "🔊";
+
+    }else{
+
+        music.muted = true;
+        btn.textContent = "🔇";
+
+    }
 
 });
-
-stars.forEach(star=>{
-
-star.style.animationPlayState="running";
-
-});
-
-},4500);
-
-setTimeout(()=>{
-
-intro.querySelector("h1").innerHTML="FAREWELL 2026";
-
-intro.querySelector("p").innerHTML="A journey written among the stars.";
-
-},7000);
-
-setTimeout(()=>{
-
-intro.style.opacity="0";
-
-setTimeout(()=>{
-
-intro.style.display="none";
-
-invite.style.display="flex";
-
-invite.style.opacity="0";
-
-setTimeout(()=>{
-
-invite.style.opacity="1";
-
-invite.style.transition="1s";
-
-},100);
-
-},1000);
-
-},9000);
 /* ---------- NEXT PAGE ---------- */
 
 next.addEventListener("click",()=>{
@@ -217,3 +230,27 @@ star.style.transform=`translateY(${y}px)`;
 });
 
 },50);
+/* ---------- BACKGROUND MUSIC ---------- */
+
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+music.volume = 0.4;
+
+// Start music on the FIRST click anywhere
+document.addEventListener("click", () => {
+    music.play().catch(() => {});
+}, { once: true });
+
+// Mute / Unmute
+btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+
+    if (music.muted) {
+        music.muted = false;
+        btn.textContent = "🔊";
+    } else {
+        music.muted = true;
+        btn.textContent = "🔇";
+    }
+});
