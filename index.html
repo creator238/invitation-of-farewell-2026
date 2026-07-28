@@ -72,11 +72,8 @@
 Physics Department Presents
 
 </h3>
-
-<h1>
-
-Tap the Sky
-
+<h1 id="tapSky" style="cursor:pointer;">
+✨ Tap the Sky ✨
 </h1>
 
 <p>
@@ -115,7 +112,7 @@ Every ending marks the beginning of another beautiful journey.
 
 <h2>Event Details</h2>
 
-<p>📅 24th July 2026 [Friday]</p>
+<p>📅 29 July 2026 [Friday]</p>
 
 <p>🕙 10:00 AM</p>
 
@@ -167,7 +164,7 @@ Thank You ❤️
 <script src="script.js"></script>
 <!-- Background Music -->
 <audio id="bgMusic" loop>
-    <source src="farewell-song.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
     <!-- Mute Button -->
 <button id="musicBtn">🔊</button>
@@ -194,29 +191,5 @@ Thank You ❤️
 }
 </style>
 
-<script>
-const music = document.getElementById("bgMusic");
-const btn = document.getElementById("musicBtn");
-
-music.volume = 0.4;
-
-// Play music on the first click anywhere
-document.addEventListener("click", function () {
-    music.play().catch(err => console.log(err));
-}, { once: true });
-
-// Mute / Unmute button
-btn.addEventListener("click", function (e) {
-    e.stopPropagation();
-
-    if (music.muted) {
-        music.muted = false;
-        btn.textContent = "🔊";
-    } else {
-        music.muted = true;
-        btn.textContent = "🔇";
-    }
-});
-</script>
 </body>
 </html>
