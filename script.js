@@ -37,6 +37,7 @@ starBox.appendChild(star);
 /* ---------- INTRO ---------- */
 /* ---------- TAP THE SKY ---------- */
 
+window.addEventListener("load", () => {
 const tapSky = document.getElementById("tapSky");
 const music = document.getElementById("bgMusic");
 const btn = document.getElementById("musicBtn");
@@ -231,3 +232,4 @@ star.style.transform=`translateY(${y}px)`;
 });
 
 },50);
+});
