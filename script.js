@@ -230,27 +230,3 @@ star.style.transform=`translateY(${y}px)`;
 });
 
 },50);
-/* ---------- BACKGROUND MUSIC ---------- */
-
-const music = document.getElementById("bgMusic");
-const btn = document.getElementById("musicBtn");
-
-music.volume = 0.4;
-
-// Start music on the FIRST click anywhere
-document.addEventListener("click", () => {
-    music.play().catch(() => {});
-}, { once: true });
-
-// Mute / Unmute
-btn.addEventListener("click", function (e) {
-    e.stopPropagation();
-
-    if (music.muted) {
-        music.muted = false;
-        btn.textContent = "🔊";
-    } else {
-        music.muted = true;
-        btn.textContent = "🔇";
-    }
-});
