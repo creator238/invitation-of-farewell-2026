@@ -1,4 +1,4 @@
-alert("Script is working");
+
 const intro = document.getElementById("intro");
 const invite = document.getElementById("invite");
 
